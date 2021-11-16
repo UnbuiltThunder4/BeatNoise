@@ -9,15 +9,19 @@ import SwiftUI
 
 struct HomeView: View {
         init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-         }
+            UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        }
     var body: some View {
         NavigationView{
             VStack{
                 NavigationLink(destination: ScanningView()) {
-                    Text("SCAN").font(.system(size: 30)).fontWeight(.bold).foregroundColor(Color.white).background(Circle().stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),
-                        startPoint: .top,
-                        endPoint: .bottom), lineWidth: 10).foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
+                    Text("SCAN")
+                        .font(.system(size: 30))
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .background(Circle()
+                            .stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),startPoint: .top,endPoint: .bottom), lineWidth: 12)
+                            .foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
                         .padding(.bottom, 80)
                 }
                
