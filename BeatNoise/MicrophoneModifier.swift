@@ -76,7 +76,7 @@ class MicrophoneMonitor: ObservableObject {
 }
 
 
-class MicrophoneInput: ObservableObject {
+class MicrophoneInput: ObservableObject { //Eugenio's code
     
     private var audioRecorder: AVAudioRecorder
     private var timer: Timer?
