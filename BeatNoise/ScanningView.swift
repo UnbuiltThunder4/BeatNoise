@@ -30,10 +30,10 @@ struct ScanningView: View {
                   "You can prevent hear loss with the use of noise-cancelling headphones."] //9
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
          init() {
            UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
        }
-      
     private func normalizeSoundLevel(level: Float) -> CGFloat {
         let level = max(0.2, CGFloat(level) + 50) / 2 // between 0.1 and 25
            
@@ -43,37 +43,37 @@ struct ScanningView: View {
     var body: some View {
         NavigationView{
             VStack {
-             
                 HStack(spacing: 10){
                     Spacer()
-                    
-                    Circle().fill(Color.black).frame(width: 25, height: 25).background(Ellipse().fill(Color.gray.opacity(eyeFade ? 0.6 : 0.2)).frame(width: 60, height: 60)).padding(.bottom, 20).background( Ellipse().fill(Color.white.opacity(0.70))
+                    Circle().fill(Color.black).frame(width: 25, height: 25).background(Ellipse().fill(Color.gray.opacity(0.6)).frame(width: 60, height: 60)).padding(.bottom, 20).background( Ellipse().fill(Color.white.opacity(0.70))
                         .frame(width: 100, height: 120)).padding(.trailing, 30)
                     Spacer()
                     Circle().fill(Color.black).frame(width: 25, height: 25).background(Ellipse().fill(Color.gray.opacity(0.6)).frame(width: 60, height: 60)).padding(.bottom, 20).background( Ellipse().fill(Color.white.opacity(0.70))
                         .frame(width: 100, height: 120)).padding(.leading, 30)
                     Spacer()
-                }.padding(40)
+                }.padding(.bottom, 40)
                 Spacer()
                 HStack(spacing: 4) {
                          ForEach(mic.soundSamples, id: \.self) { level in
                              BarView(value: self.normalizeSoundLevel(level: level))
                          }
-                }.padding(.bottom, 20)
+                }.frame(maxWidth: 350, maxHeight: 100).padding(.top, 40)
                 Spacer()
-                Triangle()
-                    .fill(Color.white)
-                    .opacity(0.9)
-                    .frame(width: 40, height: 40)
-                    .offset(x: -80, y: -55)
+               
                 if (timeRemaining > 0) {
-                            
+                    Triangle()
+                        .fill(Color.white)
+                        .opacity(0.9)
+                        .frame(width: 40, height: 40)
+                        .offset(x: -80, y: 10)
                     Text("Wait \(timeRemaining) sec\n I'm scanning...")
+                             .foregroundColor(Color.red)
+                             .frame(maxWidth: 350, maxHeight: 150)
                              .background(Rectangle().fill(Color.white)
-                             .frame(width: 300, height: 150)
+                             .frame(width: 350, height: 150)
                              .cornerRadius(30)
                              .opacity(0.9))
-                             .padding(.bottom, 100)
+                             .padding(.bottom, 50)
                              .onReceive(timer) { _ in
                                     if timeRemaining > 0 {
                                         timeRemaining -= 1
@@ -81,12 +81,20 @@ struct ScanningView: View {
                                 }
                         }
                         else {
+                            Triangle()
+                                .fill(Color.white)
+                                .opacity(0.9)
+                                .frame(width: 40, height: 40)
+                                .offset(x: -80, y: 10)
                             Text("The result is \(micResult.averageData()) dB\nDid you know? \(trivia[rand])")
+                                .padding(.horizontal, 5)
+                                .foregroundColor(Color.red)
+                                .frame(maxWidth: 350, maxHeight: 150)
                                 .background(Rectangle().fill(Color.white)
                                 .frame(width: 350, height: 150)
                                 .cornerRadius(30)
                                 .opacity(0.9))
-                                .padding(.bottom, 100)
+                                .padding(.bottom, 50)
                                 .onAppear {
                                     rand = Int.random(in:0..<10)
                                     DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -96,10 +104,6 @@ struct ScanningView: View {
                                     }
                                 }
                         }
-                   
-                  
-               
-         
             }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("backgroundColor")
             ).navigationBarTitleDisplayMode(.inline)
         }
@@ -125,10 +129,7 @@ struct BarView: View {
                 .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),
                                      startPoint: .top,
                                      endPoint: .bottom))
-                .border(Color.black)
-               
-        
-                .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 10) / CGFloat(numberOfSamples), height: value)
+                .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 15) / CGFloat(numberOfSamples), height: value)
               
         }
     }

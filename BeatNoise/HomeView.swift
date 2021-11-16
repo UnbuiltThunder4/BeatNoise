@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    init() {
+        init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-       }
+         }
     var body: some View {
         NavigationView{
             VStack{
