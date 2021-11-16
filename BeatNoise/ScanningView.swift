@@ -17,16 +17,29 @@ struct ScanningView: View {
     @ObservedObject private var micResult = MicrophoneInput()
     @State var timeRemaining = 7
     
+    @State var rand: Int = 0
+    let trivia = ["Sounds that reach or surpass 85 dB can harm the ears.", //0
+                  "Noise pollution can cause health problems even in wildlife.", //1
+                  "Loud noises cause bluebirds to have fewer chicks.", //2
+                  "Noise is responsible for 16,600 premature deaths every year in Europe.", //3
+                  "Trees are natural noise absorbents and can reduce noise by 10 dB.", //4
+                  "Noise pollution can even cause heart attacks.", //5
+                  "Research on noise pollution is still just starting.", //6
+                  "The World Health Organization defines noise above 65 dB as noise pollution.", //7
+                  "The average city dweller has a hearing loss of a 15 years older person.", //8
+                  "You can prevent hear loss with the use of noise-cancelling headphones."] //9
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
          init() {
            UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
        }
       
-       private func normalizeSoundLevel(level: Float) -> CGFloat {
-           let level = max(0.2, CGFloat(level) + 50) / 2 // between 0.1 and 25
+    private func normalizeSoundLevel(level: Float) -> CGFloat {
+        let level = max(0.2, CGFloat(level) + 50) / 2 // between 0.1 and 25
            
-           return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
-       }
+        return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
+    }
+    
     var body: some View {
         NavigationView{
             VStack {
@@ -55,7 +68,7 @@ struct ScanningView: View {
                     .offset(x: -80, y: -55)
                 if (timeRemaining > 0) {
                             
-                    Text("Wait \(timeRemaining) sec")
+                    Text("Wait \(timeRemaining) sec\n I'm scanning...")
                              .background(Rectangle().fill(Color.white)
                              .frame(width: 300, height: 150)
                              .cornerRadius(30)
@@ -68,17 +81,18 @@ struct ScanningView: View {
                                 }
                         }
                         else {
-                            Text(" The result is \(micResult.averageData())")
+                            Text("The result is \(micResult.averageData()) dB\nDid you know? \(trivia[rand])")
                                 .background(Rectangle().fill(Color.white)
-                                .frame(width: 300, height: 150)
+                                .frame(width: 350, height: 150)
                                 .cornerRadius(30)
                                 .opacity(0.9))
                                 .padding(.bottom, 100)
                                 .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                                withAnimation(.linear(duration: 2)){
-                                          eyeFade.toggle()
-                                        }
+                                    rand = Int.random(in:0..<10)
+                                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation(.linear(duration: 2)){
+                                                eyeFade.toggle()
+                                            }
                                     }
                                 }
                         }
