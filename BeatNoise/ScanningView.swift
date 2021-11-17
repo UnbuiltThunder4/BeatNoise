@@ -80,12 +80,14 @@ struct ScanningView: View {
                          }
                 }.frame(maxWidth: 350, maxHeight: 100).padding(.top, 40)
                 Spacer()
-               
                 if (timeRemaining > 0) {
                     Triangle()
                         .fill(Color.white)
                         .frame(width: 40, height: 40)
                         .offset(x: -80, y: 10)
+                        .onAppear {
+                            micResult.startMonitoring()
+                        }
                     Text("Wait \(timeRemaining) sec\nI'm scanning...")
                         .foregroundColor(Color.black)
                         .frame(maxWidth: 350, maxHeight: 150)

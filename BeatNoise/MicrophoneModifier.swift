@@ -108,18 +108,17 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
             audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
             
-            startMonitoring()
         } catch {
             fatalError(error.localizedDescription)
         }
     }
     
-    private func startMonitoring() {
+    public func startMonitoring() {
             var times = 0
             var rep = true
             audioRecorder.isMeteringEnabled = true
             audioRecorder.record()
-            timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: rep, block: { (timer) in
+            timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: rep, block: { (timer) in //runs 41 times (fix?)
                 if times < self.numberOfData {
                     self.audioRecorder.updateMeters()
                     self.soundData[times] = self.audioRecorder.averagePower(forChannel: 0)
@@ -133,12 +132,19 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
     
     
     public func averageData() -> Float {
-        var sum: Float = 0.0
-        for i in self.soundData {
-            sum += i+95
+            var sum: Float = 0.0
+            for i in self.soundData {
+                sum += i + 160
+            }
+            sum = sum / Float(self.numberOfData)
+            return 100 / 160 * sum
         }
-        return sum / Float(self.numberOfData)
-    }
+        
+        public func stopMonitoring() {
+            timer?.invalidate()
+            audioRecorder.stop()
+            //self.soundData = [Float](repeating: .zero, count: numberOfData)
+        }
     
     deinit {
         timer?.invalidate()
