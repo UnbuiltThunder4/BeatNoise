@@ -15,7 +15,7 @@ struct ScanningView: View {
     @State var movingEye = false
     @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: numberOfSamples)
     @ObservedObject private var micResult = MicrophoneInput()
-    @State var timeRemaining = 7
+    @State var timeRemaining = 10 //Should be numberOfData (found in MicrophoneModifier) / 4
     
     @State var rand: Int = 0
     let trivia = ["Sounds that reach or surpass 85 dB can harm the ears.", //line 0
@@ -106,7 +106,7 @@ struct ScanningView: View {
                             .fill(Color.white)
                             .frame(width: 40, height: 40)
                             .offset(x: -80, y: 10)
-                        Text("The result is \(Int(micResult.averageData())) dB.\nDid you know? \(trivia[rand])")
+                        Text("The result is \(Int(micResult.averageData())) dB. Did you know?\n\(trivia[rand])")
                             .padding(.horizontal, 5)
                             .foregroundColor(Color.black)
                             .frame(maxWidth: 350, maxHeight: 150)

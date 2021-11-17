@@ -81,7 +81,7 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
     private var audioRecorder: AVAudioRecorder
     private var timer: Timer?
     
-    private let numberOfData = 28
+    private let numberOfData = 40 //Should be timeRemaining (found in ContentView) * 4
     @Published public var soundData: [Float]
     
     init() {
@@ -135,7 +135,7 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
     public func averageData() -> Float {
         var sum: Float = 0.0
         for i in self.soundData {
-            sum += i+110
+            sum += i+95
         }
         return sum / Float(self.numberOfData)
     }
