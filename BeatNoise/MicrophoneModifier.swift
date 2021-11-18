@@ -137,7 +137,7 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
                 sum += i + 160
             }
             sum = sum / Float(self.numberOfData)
-            return 100 / 160 * sum
+            return (90 / 160 * sum) + 2
         }
         
         public func stopMonitoring() {
