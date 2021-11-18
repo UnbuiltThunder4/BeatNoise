@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		486B93F92746522F00D5D535 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B93F82746522F00D5D535 /* PlayerView.swift */; };
+		486B93FC2746558E00D5D535 /* Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 486B93FB2746558E00D5D535 /* Sound.mp3 */; };
+		486B93FE2746559500D5D535 /* Sound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 486B93FD2746559500D5D535 /* Sound1.mp3 */; };
+		486B94002746578600D5D535 /* AVdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B93FF2746578600D5D535 /* AVdelegate.swift */; };
+		486B9402274657B600D5D535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B9401274657B600D5D535 /* AppDelegate.swift */; };
 		69FCF2CF2743BF7C003234A9 /* BeatNoiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */; };
 		69FCF2D12743BF7C003234A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FCF2D02743BF7C003234A9 /* ContentView.swift */; };
 		69FCF2D32743BF7F003234A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69FCF2D22743BF7F003234A9 /* Assets.xcassets */; };
@@ -17,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		486B93F82746522F00D5D535 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		486B93FB2746558E00D5D535 /* Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sound.mp3; sourceTree = "<group>"; };
+		486B93FD2746559500D5D535 /* Sound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sound1.mp3; sourceTree = "<group>"; };
+		486B93FF2746578600D5D535 /* AVdelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVdelegate.swift; sourceTree = "<group>"; };
+		486B9401274657B600D5D535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69FCF2CB2743BF7C003234A9 /* BeatNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatNoiseApp.swift; sourceTree = "<group>"; };
 		69FCF2D02743BF7C003234A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		486B93FA2746557300D5D535 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				486B93FB2746558E00D5D535 /* Sound.mp3 */,
+				486B93FD2746559500D5D535 /* Sound1.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		69FCF2C22743BF7C003234A9 = {
 			isa = PBXGroup;
 			children = (
@@ -62,7 +81,11 @@
 				69FCF2D02743BF7C003234A9 /* ContentView.swift */,
 				69FCF2E02743BFEB003234A9 /* ScanningView.swift */,
 				69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */,
+				486B9401274657B600D5D535 /* AppDelegate.swift */,
+				486B93F82746522F00D5D535 /* PlayerView.swift */,
+				486B93FF2746578600D5D535 /* AVdelegate.swift */,
 				69FCF2D22743BF7F003234A9 /* Assets.xcassets */,
+				486B93FA2746557300D5D535 /* Resources */,
 				69FCF2D42743BF7F003234A9 /* Preview Content */,
 			);
 			path = BeatNoise;
@@ -136,6 +159,8 @@
 			files = (
 				69FCF2D62743BF7F003234A9 /* Preview Assets.xcassets in Resources */,
 				69FCF2D32743BF7F003234A9 /* Assets.xcassets in Resources */,
+				486B93FE2746559500D5D535 /* Sound1.mp3 in Resources */,
+				486B93FC2746558E00D5D535 /* Sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486B9402274657B600D5D535 /* AppDelegate.swift in Sources */,
 				69FCF2E12743BFEB003234A9 /* ScanningView.swift in Sources */,
 				69FCF2DD2743BFAD003234A9 /* MicrophoneModifier.swift in Sources */,
 				69FCF2DF2743BFCA003234A9 /* HomeView.swift in Sources */,
+				486B94002746578600D5D535 /* AVdelegate.swift in Sources */,
+				486B93F92746522F00D5D535 /* PlayerView.swift in Sources */,
 				69FCF2D12743BF7C003234A9 /* ContentView.swift in Sources */,
 				69FCF2CF2743BF7C003234A9 /* BeatNoiseApp.swift in Sources */,
 			);
@@ -299,7 +327,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -329,7 +357,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
