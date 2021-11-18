@@ -126,8 +126,10 @@ struct ScanningView: View {
                                 }
                             }
                         }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("backgroundColor")
-            ).navigationBarTitleDisplayMode(.inline)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //.background(Color("backgroundColor"))
+            .navigationBarTitleDisplayMode(.inline)
         }
         
     }

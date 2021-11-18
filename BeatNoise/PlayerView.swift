@@ -7,13 +7,16 @@
 
 import SwiftUI
 import AVKit
+ 
 
 struct PlayerView: View {
+    
     var body: some View {
-        NavigationView {
-            Player().navigationBarTitle("White Noise Player")
-        }
+        Player().navigationBarTitle("White Noise Player")
+            .navigationBarTitleDisplayMode(.inline)
+            
     }
+        
 }
 
 struct PlayerView_Previews: PreviewProvider {
@@ -36,73 +39,82 @@ struct Player: View {
     @State var del = AVdelegate()
     
     var body: some View {
-        VStack (spacing: 20){
-            Text(self.title).font(.title).padding(.top)
-            ZStack(alignment: .leading) {
-            
-                Capsule().fill(Color.black.opacity(0.08)).frame(height: 8)
-                
-                Capsule().fill(Color.red).frame(width: self.width, height: 8)
-                .gesture(DragGesture()
-                    .onChanged({ (value) in
+                    VStack (spacing: 20){
+                        Text(self.title).font(.title).padding(.top)
+                        ZStack(alignment: .leading) {
                         
-                        let x = value.location.x
+                            Capsule().fill(Color.gray.opacity(0.08)).frame(height: 8)
+                            
+                            Capsule().fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),
+                                                          startPoint: .leading,
+                                                          endPoint: .trailing)).frame(width: self.width, height: 8)
+                            
+                                .gesture(DragGesture()
+                                .onChanged({ (value) in
+                                    
+                                    let x = value.location.x
+                                    
+                                    self.width = x
+                                    
+                                }).onEnded({ (value) in
+                                    
+                                    let x = value.location.x
+                                    
+                                    let screen = UIScreen.main.bounds.width - 30
+                                    
+                                    let percent = x / screen
+                                    
+                                    self.player.currentTime = Double(percent) * self.player.duration
+                                }))
+                        }
+                        .padding(.top)
                         
-                        self.width = x
-                        
-                    }).onEnded({ (value) in
-                        
-                        let x = value.location.x
-                        
-                        let screen = UIScreen.main.bounds.width - 30
-                        
-                        let percent = x / screen
-                        
-                        self.player.currentTime = Double(percent) * self.player.duration
-                    }))
-            }
-            .padding(.top)
-            
-            HStack(alignment: .center, spacing: UIScreen.main.bounds.width / 5.0 - 30.0) {
-                Button(action: goback) {
-                    Image(systemName: "backward.end.fill")
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/) //this makes the button bigger
+                        HStack(alignment: .center, spacing: UIScreen.main.bounds.width / 5.0 - 30.0) {
+                            Button(action: goback) {
+                                Image(systemName: "backward.end.fill")
+                                    .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/) //this makes the button bigger
+                                }
+                            
+                            Button(action: play_pause) {
+                                Image(systemName: self.playing && !self.finish ? "pause.fill" : "play.fill")
+                                    .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/)
+                            }
+                            Button(action: gonext) {
+                                Image(systemName: "forward.end.fill")
+                                    .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/)
+                            }
+                            
+                        }
                     }
-                
-                Button(action: play_pause) {
-                    Image(systemName: self.playing && !self.finish ? "pause.fill" : "play.fill")
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/)
-                }
-                Button(action: gonext) {
-                    Image(systemName: "forward.end.fill")
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.accessibility4/*@END_MENU_TOKEN@*/)
-                }
-                
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("backgroundColor"))
-        .onAppear {
-            let url = Bundle.main.path(forResource: self.songs[self.current], ofType: "mp3")
-            self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: url!))
-            self.player.delegate = self.del
-            self.player.prepareToPlay()
-            self.getData()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
-                
-                if self.player.isPlaying{
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    //.background(Color("backgroundColor"))
+                    .onAppear {
+                        let url = Bundle.main.path(forResource: self.songs[self.current], ofType: "mp3")
+                        self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: url!))
+                        self.player.delegate = self.del
+                        self.player.prepareToPlay()
+                        self.getData()
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
+                            
+                            if self.player.isPlaying{
+                                
+                                let screen = UIScreen.main.bounds.width - 30
+                                
+                                let value = self.player.currentTime / self.player.duration
+                                
+                                self.width = screen * CGFloat(value)
+                            }
+                        }
+                        NotificationCenter.default.addObserver(forName: NSNotification.Name("Finish"), object: nil, queue: .main) { (_) in
+                            
+                            self.finish = true
+                        }
+                    }
                     
-                    let screen = UIScreen.main.bounds.width - 30
-                    
-                    let value = self.player.currentTime / self.player.duration
-                    
-                    self.width = screen * CGFloat(value)
-                }
-            }
-            NotificationCenter.default.addObserver(forName: NSNotification.Name("Finish"), object: nil, queue: .main) { (_) in
                 
-                self.finish = true
-            }
-        }
+        
+            
+        
         
         
     }

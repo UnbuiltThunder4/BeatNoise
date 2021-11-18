@@ -18,7 +18,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Scan", systemImage: "dot.radiowaves.left.and.right")
                     }
-            PlayerView()
+            PlaylistView()
                 .tabItem{
                     Label("Playlist", systemImage: "music.note")
                 }

@@ -25,8 +25,10 @@ struct HomeView: View {
                         .padding(.bottom, 80)
                 }
                
-        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("backgroundColor"))
-                .navigationBarTitle("Scan")
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        //.background(Color("backgroundColor"))
+        .navigationBarTitle("Scan")
         }
     }
 }

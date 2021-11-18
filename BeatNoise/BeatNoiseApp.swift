@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BeatNoiseApp: App {
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.dark) //this will make the entire app in dark mode automatically setting the background
         }
     }
 }
