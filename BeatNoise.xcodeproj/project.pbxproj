@@ -13,6 +13,7 @@
 		486B94002746578600D5D535 /* AVdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B93FF2746578600D5D535 /* AVdelegate.swift */; };
 		486B9402274657B600D5D535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B9401274657B600D5D535 /* AppDelegate.swift */; };
 		486B94042746AF8E00D5D535 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B94032746AF8E00D5D535 /* PlaylistView.swift */; };
+		69D3062E2747A04C00287342 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D3062D2747A04C00287342 /* SplashScreen.swift */; };
 		69FCF2CF2743BF7C003234A9 /* BeatNoiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */; };
 		69FCF2D12743BF7C003234A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FCF2D02743BF7C003234A9 /* ContentView.swift */; };
 		69FCF2D32743BF7F003234A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69FCF2D22743BF7F003234A9 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		486B93FF2746578600D5D535 /* AVdelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVdelegate.swift; sourceTree = "<group>"; };
 		486B9401274657B600D5D535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		486B94032746AF8E00D5D535 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		69D3062D2747A04C00287342 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		69FCF2CB2743BF7C003234A9 /* BeatNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatNoiseApp.swift; sourceTree = "<group>"; };
 		69FCF2D02743BF7C003234A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				69FCF2D22743BF7F003234A9 /* Assets.xcassets */,
 				486B93FA2746557300D5D535 /* Resources */,
 				69FCF2D42743BF7F003234A9 /* Preview Content */,
+				69D3062D2747A04C00287342 /* SplashScreen.swift */,
 			);
 			path = BeatNoise;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D3062E2747A04C00287342 /* SplashScreen.swift in Sources */,
 				486B9402274657B600D5D535 /* AppDelegate.swift in Sources */,
 				69FCF2E12743BFEB003234A9 /* ScanningView.swift in Sources */,
 				69FCF2DD2743BFAD003234A9 /* MicrophoneModifier.swift in Sources */,

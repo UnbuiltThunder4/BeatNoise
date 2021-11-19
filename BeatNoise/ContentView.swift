@@ -12,8 +12,13 @@ import Combine
 
 
 struct ContentView: View {
+    @State var isActive:Bool = false
+    init() {
+        UITabBar.appearance().unselectedItemTintColor = UIColor.gray
+    }
     var body: some View {
         TabView{
+            if self.isActive {
             HomeView()
                 .tabItem {
                     Label("Scan", systemImage: "dot.radiowaves.left.and.right")
@@ -22,6 +27,15 @@ struct ContentView: View {
                 .tabItem{
                     Label("Playlist", systemImage: "music.note")
                 }
+            } else {
+                SplashScreen()
+            }
+        }.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.7) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
         }
         
     }
