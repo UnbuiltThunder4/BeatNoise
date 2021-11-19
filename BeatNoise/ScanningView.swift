@@ -128,7 +128,7 @@ struct ScanningView: View {
                         }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            //.background(Color("backgroundColor"))
+            .background(Color("backgroundColor"))
             .navigationBarTitleDisplayMode(.inline)
         }
         

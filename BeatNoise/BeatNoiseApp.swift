@@ -16,6 +16,7 @@ struct BeatNoiseApp: App {
             ContentView()
                 .preferredColorScheme(.dark) //this will make the entire app in dark mode automatically setting the background
                 
+
         }
     }
 }

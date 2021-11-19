@@ -10,44 +10,50 @@ import SwiftUI
 
 struct PlaylistView: View {
     
+    //@StateObject var cur = SettingCurrent()
+    
+  //  @Binding var current: Int
     
     var body: some View {
         
         NavigationView{
             VStack {
-                    Form {
-                        NavigationLink(destination: PlayerView()) {
-                            Text ("White Noise Track 1")
-                            
-                        }
-                    
-                        NavigationLink(destination: PlayerView()) {
-                            
-                             Text ("White Noise Track 2")
-                            
-                        }
-                        NavigationLink(destination: Text("")) {
-                            
-                             Text ("Ocean Waves")
-                        }
-                        NavigationLink(destination: Text("")) {
-                            
-                             Text ("Rain Track 1")
-                        }
-                        NavigationLink(destination: Text("")) {
-                            
-                             Text ("Rain Track 2")
-                        }
+                List {
+                    NavigationLink(destination: PlayerView()) {
+                        Text ("White Noise Track 1")
                         
-                        NavigationLink(destination: Text("")) {
-                            
-                            Text ("Birds Chirping")
-                        }
-                    
                     }
-        }.navigationTitle("Playlist")
-        
-}
+                    
+                    NavigationLink(destination: PlayerView()) {
+                        
+                        Text ("White Noise Track 2")
+//                            .onTapGesture(){
+//                                self.current = 1
+//                    }
+                    }
+                    NavigationLink(destination: Text("")) {
+                        
+                        Text ("Ocean Waves")
+                    }
+                    NavigationLink(destination: Text("")) {
+                        
+                        Text ("Rain Track 1")
+                    }
+                    NavigationLink(destination: Text("")) {
+                        
+                        Text ("Rain Track 2")
+                    }
+                    
+                    NavigationLink(destination: Text("")) {
+                        
+                        Text ("Birds Chirping")
+                    }
+                    
+                }
+            }
+            .navigationTitle("Playlist")
+            .background(Color("backgroundColor"))
+        }
     }
 }
 
