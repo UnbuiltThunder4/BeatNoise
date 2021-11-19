@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2621FB152747BC9800674AA2 /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621FB142747BC9800674AA2 /* TriviaView.swift */; };
+		2621FB172747BE7C00674AA2 /* TriviaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2621FB162747BE7C00674AA2 /* TriviaCard.swift */; };
 		486B93F92746522F00D5D535 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486B93F82746522F00D5D535 /* PlayerView.swift */; };
 		486B93FC2746558E00D5D535 /* Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 486B93FB2746558E00D5D535 /* Sound.mp3 */; };
 		486B93FE2746559500D5D535 /* Sound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 486B93FD2746559500D5D535 /* Sound1.mp3 */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2621FB142747BC9800674AA2 /* TriviaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
+		2621FB162747BE7C00674AA2 /* TriviaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaCard.swift; sourceTree = "<group>"; };
 		486B93F82746522F00D5D535 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		486B93FB2746558E00D5D535 /* Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sound.mp3; sourceTree = "<group>"; };
 		486B93FD2746559500D5D535 /* Sound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sound1.mp3; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				69FCF2E02743BFEB003234A9 /* ScanningView.swift */,
 				69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */,
 				486B9401274657B600D5D535 /* AppDelegate.swift */,
+				2621FB142747BC9800674AA2 /* TriviaView.swift */,
+				2621FB162747BE7C00674AA2 /* TriviaCard.swift */,
 				486B94032746AF8E00D5D535 /* PlaylistView.swift */,
 				486B93F82746522F00D5D535 /* PlayerView.swift */,
 				486B93FF2746578600D5D535 /* AVdelegate.swift */,
@@ -177,12 +183,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2621FB172747BE7C00674AA2 /* TriviaCard.swift in Sources */,
 				69D3062E2747A04C00287342 /* SplashScreen.swift in Sources */,
 				486B9402274657B600D5D535 /* AppDelegate.swift in Sources */,
 				69FCF2E12743BFEB003234A9 /* ScanningView.swift in Sources */,
 				69FCF2DD2743BFAD003234A9 /* MicrophoneModifier.swift in Sources */,
 				486B94042746AF8E00D5D535 /* PlaylistView.swift in Sources */,
 				69FCF2DF2743BFCA003234A9 /* HomeView.swift in Sources */,
+				2621FB152747BC9800674AA2 /* TriviaView.swift in Sources */,
 				486B94002746578600D5D535 /* AVdelegate.swift in Sources */,
 				486B93F92746522F00D5D535 /* PlayerView.swift in Sources */,
 				69FCF2D12743BF7C003234A9 /* ContentView.swift in Sources */,

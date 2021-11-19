@@ -27,6 +27,10 @@ struct ContentView: View {
                 .tabItem{
                     Label("Playlist", systemImage: "music.note")
                 }
+                TriviaView()
+                    .tabItem {
+                        Label("Trivia", systemImage: "book")
+                    }
             } else {
                 SplashScreen()
             }
