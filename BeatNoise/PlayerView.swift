@@ -22,19 +22,20 @@ struct PlayerView: View {
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerView()
+            .preferredColorScheme(.dark)
     }
 }
 
 
 struct Player: View {
     
+    @State var current = 0
     @State var data: Data = .init(count: 0)
     @State var title = ""
     @State var player: AVAudioPlayer!
     @State var playing = false
     @State var width: CGFloat = 0.0
     @State var songs = ["Sound", "Sound1"]
-    @State var current = 0
     @State var finish = false
     @State var del = AVdelegate()
     
@@ -43,7 +44,7 @@ struct Player: View {
                         Text(self.title).font(.title).padding(.top)
                         ZStack(alignment: .leading) {
                         
-                            Capsule().fill(Color.gray.opacity(0.08)).frame(height: 8)
+                            Capsule().fill(Color.white.opacity(0.08)).frame(width: UIScreen.main.bounds.width - 30 ,height: 8)
                             
                             Capsule().fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),
                                                           startPoint: .leading,

@@ -27,7 +27,7 @@ struct HomeView: View {
                
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        //.background(Color("backgroundColor"))
+        .background(Color("backgroundColor"))
         .navigationBarTitle("Scan")
         }
     }

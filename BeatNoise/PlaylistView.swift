@@ -11,18 +11,20 @@ import SwiftUI
 struct PlaylistView: View {
     
     
-    
     var body: some View {
+        
         NavigationView{
             VStack {
-                    List {
+                    Form {
                         NavigationLink(destination: PlayerView()) {
                             Text ("White Noise Track 1")
+                            
                         }
-                        
+                    
                         NavigationLink(destination: PlayerView()) {
                             
                              Text ("White Noise Track 2")
+                            
                         }
                         NavigationLink(destination: Text("")) {
                             
@@ -42,8 +44,8 @@ struct PlaylistView: View {
                             Text ("Birds Chirping")
                         }
                     
-                    }.navigationTitle("Playlist")
-        }
+                    }
+        }.navigationTitle("Playlist")
         
 }
     }
@@ -52,6 +54,7 @@ struct PlaylistView: View {
 struct PlaylistView_Previews: PreviewProvider {
     static var previews: some View {
         PlaylistView()
+            .preferredColorScheme(.dark)
     }
 }
 
