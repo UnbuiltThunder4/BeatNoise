@@ -15,12 +15,15 @@ struct PlayerView: View {
     @State var current = 0
     @State var data: Data = .init(count: 0)
     @State var title = ""
+    @State var currtime = ""
+    @State var lenght = ""
     @State var player: AVAudioPlayer!
     @State var playing = false
     @State var width: CGFloat = 0.0
     @State var songs = ["Sound", "Sound1"]
     @State var finish = false
     @State var del = AVdelegate()
+    @State var timer = Timer.publish(every: 1, on: .current, in: .default).autoconnect()
     @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: numberOfSamples)
 
     
@@ -96,6 +99,11 @@ struct PlayerView: View {
             }
             .padding(.top)
             
+            HStack(spacing: UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 4.5)) {
+                Text(currtime)
+                Text(lenght)
+            }
+            
             HStack(alignment: .center, spacing: UIScreen.main.bounds.width / 5.0 - 30.0) {
                 Button(action: goback) {
                     Image(systemName: "backward.end.fill")
@@ -122,6 +130,8 @@ struct PlayerView: View {
             self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: url!))
             self.player.delegate = self.del
             self.player.prepareToPlay()
+            self.currtime = self.getCurrenttime(value: self.player.currentTime)
+            self.lenght = self.getCurrenttime(value: self.player.duration)
             self.getData()
             play_pause()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
@@ -139,6 +149,10 @@ struct PlayerView: View {
                 
                 self.finish = true
             }
+        }
+        .onReceive(timer) {
+            (_) in
+            self.updateTime()
         }
     }
     
@@ -180,6 +194,16 @@ struct PlayerView: View {
                 self.title = title
             }
         }
+    }
+    
+    func getCurrenttime (value: TimeInterval)-> String {
+        let duration: String
+        duration = "\(Int(value / 60)):\(Int(value.truncatingRemainder(dividingBy: 60)) < 9 ? "0" : "")\(Int(value.truncatingRemainder(dividingBy: 60)))"
+        return duration
+    }
+    
+    func updateTime() {
+        self.currtime = self.getCurrenttime(value: self.player.currentTime)
     }
     
     func ChangeSongs() {
