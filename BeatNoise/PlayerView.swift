@@ -233,10 +233,12 @@ struct PlayerView: View {
         if self.player.isPlaying {
             self.player.pause()
             self.playing = false
+            mic.stopMonitoring()
         }
         else {
             self.player.play()
             self.playing = true
+            mic.startMonitoring()
         }
     }
     

@@ -57,7 +57,7 @@ class MicrophoneMonitor: ObservableObject {
     }
     
   
-    private func startMonitoring() {
+    public func startMonitoring() {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
         timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
@@ -67,7 +67,11 @@ class MicrophoneMonitor: ObservableObject {
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
         })
     }
-    
+    public func stopMonitoring() {
+        timer?.invalidate()
+        audioRecorder.stop()
+        //self.soundData = [Float](repeating: .zero, count: numberOfData)
+    }
 
     deinit {
         timer?.invalidate()

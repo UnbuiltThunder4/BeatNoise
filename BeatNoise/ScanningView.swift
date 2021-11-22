@@ -109,7 +109,7 @@ struct ScanningView: View {
                             .frame(width: 40, height: 40)
                             .offset(x: -80, y: 10)
                         Text("The result is \(Int(micResult.averageData())) dB. Did you know?\n\(trivia[rand])")
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, 15)
                             .foregroundColor(Color.black)
                             .frame(maxWidth: 350, maxHeight: 150)
                             .background(Rectangle()
@@ -124,6 +124,8 @@ struct ScanningView: View {
                                         eyeFade.toggle()
                                     }
                                 }
+                                micResult.stopMonitoring()
+                                mic.stopMonitoring()
                             }
                         }
             }
