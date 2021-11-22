@@ -9,21 +9,21 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    }
     var body: some View {
       
-        VStack {
             NavigationView{
+                VStack {
                 List {
                     NavigationLink(destination: PlayerView(current: 0)) {
                         Text ("White Noise Track 1")
                         
                     }
-                    
                     NavigationLink(destination: PlayerView(current: 1)) {
                         
                         Text ("White Noise Track 2")
-                        
                     }
                     NavigationLink(destination: Text("")) {
                         
@@ -44,10 +44,11 @@ struct PlaylistView: View {
                     }
                     
                 }
-                .navigationTitle("Playlist")
-            }
-            .background(Color("backgroundColor"))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+            }.background(Color("backgroundColor"))
+             .frame(maxWidth: .infinity, maxHeight: .infinity)
+             .navigationTitle("Playlist")
+            
         }
     }
 }
@@ -55,7 +56,6 @@ struct PlaylistView: View {
 struct PlaylistView_Previews: PreviewProvider {
     static var previews: some View {
         PlaylistView()
-            .preferredColorScheme(.dark)
     }
 }
 

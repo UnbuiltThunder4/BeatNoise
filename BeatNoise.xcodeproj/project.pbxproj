@@ -41,7 +41,7 @@
 		69FCF2CB2743BF7C003234A9 /* BeatNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatNoiseApp.swift; sourceTree = "<group>"; };
 		69FCF2D02743BF7C003234A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		69FCF2D22743BF7F003234A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		69FCF2D22743BF7F003234A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = BeatNoise/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		69FCF2D52743BF7F003234A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		69FCF2DC2743BFAD003234A9 /* MicrophoneModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneModifier.swift; sourceTree = "<group>"; };
 		69FCF2DE2743BFCA003234A9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -328,6 +328,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeatNoise/Preview Content\"";
@@ -359,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeatNoise/Preview Content\"";

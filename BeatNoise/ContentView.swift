@@ -24,7 +24,7 @@ struct ContentView: View {
                     Label("Scan", systemImage: "dot.radiowaves.left.and.right")
                     }
             PlaylistView()
-                .tabItem{
+                .tabItem {
                     Label("Playlist", systemImage: "music.note")
                 }
                 TriviaView()
