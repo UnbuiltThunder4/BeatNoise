@@ -37,6 +37,7 @@
 		486B9401274657B600D5D535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		486B94032746AF8E00D5D535 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		69D3062D2747A04C00287342 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		69D30635274B8A9600287342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69FCF2CB2743BF7C003234A9 /* BeatNoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeatNoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FCF2CE2743BF7C003234A9 /* BeatNoiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeatNoiseApp.swift; sourceTree = "<group>"; };
 		69FCF2D02743BF7C003234A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		69FCF2CD2743BF7C003234A9 /* BeatNoise */ = {
 			isa = PBXGroup;
 			children = (
+				69D30635274B8A9600287342 /* Info.plist */,
 				69FCF2DC2743BFAD003234A9 /* MicrophoneModifier.swift */,
 				69FCF2DE2743BFCA003234A9 /* HomeView.swift */,
 				69FCF2D02743BF7C003234A9 /* ContentView.swift */,
@@ -332,6 +334,7 @@
 				DEVELOPMENT_TEAM = 4V7K684LPH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BeatNoise/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -362,6 +365,7 @@
 				DEVELOPMENT_TEAM = 4V7K684LPH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BeatNoise/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

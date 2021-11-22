@@ -31,9 +31,9 @@ struct TriviaView: View {
                         .cornerRadius(16)
                         .padding()
                 }
-            }.navigationTitle("Trivia")
+            }.background(Color("backgroundColor")).navigationTitle("Trivia")
         }
-    }.background(Color("backgroundColor"))
+    }
     }
 }
 

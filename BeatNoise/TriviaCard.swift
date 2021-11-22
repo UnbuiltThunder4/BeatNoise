@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct TriviaCard: View {
+    @State var textShade = false
     var title: String
     var text: String
     @State var isSelected: Bool = false
+    @State var ere = false
     
     var body: some View {
         LazyVStack {
@@ -21,10 +23,11 @@ struct TriviaCard: View {
                 Text(text)
                     .font(.body)
                     .frame(width: 300, height: 300, alignment: .leading)
+                    .transition(.opacity)
             }
             Image(systemName: "chevron.down")
                 .font(.title)
-                .padding(.top)
+                .padding(.top, 2)
                 .frame(width: 20, height: 20, alignment: .trailing)
                 .rotationEffect(!isSelected ? .zero : .degrees(180))
         }
@@ -34,7 +37,8 @@ struct TriviaCard: View {
             .onTapGesture {
                 isSelected = !isSelected
             }
-            .animation(.easeIn, value: isSelected)
+//            .animation(.easeIn, value: isSelected)
+//            .transition(.move(edge: .top))
     }
 }
 
