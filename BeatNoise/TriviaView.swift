@@ -22,6 +22,7 @@ struct TriviaView: View {
     ]
     
     var body: some View {
+        VStack {
         NavigationView {
             ScrollView {
                 ForEach(0..<titles.count, id: \.self) { index in
@@ -31,7 +32,8 @@ struct TriviaView: View {
                         .padding()
                 }
             }.navigationTitle("Trivia")
-        }.background(Color("backgroundColor"))
+        }
+    }.background(Color("backgroundColor"))
     }
 }
 

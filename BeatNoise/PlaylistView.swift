@@ -10,26 +10,20 @@ import SwiftUI
 
 struct PlaylistView: View {
     
-    //@StateObject var cur = SettingCurrent()
-    
-  //  @Binding var current: Int
-    
     var body: some View {
-        
-        NavigationView{
-            VStack {
+      
+        VStack {
+            NavigationView{
                 List {
-                    NavigationLink(destination: PlayerView()) {
+                    NavigationLink(destination: PlayerView(current: 0)) {
                         Text ("White Noise Track 1")
                         
                     }
                     
-                    NavigationLink(destination: PlayerView()) {
+                    NavigationLink(destination: PlayerView(current: 1)) {
                         
                         Text ("White Noise Track 2")
-//                            .onTapGesture(){
-//                                self.current = 1
-//                    }
+                        
                     }
                     NavigationLink(destination: Text("")) {
                         
@@ -50,9 +44,10 @@ struct PlaylistView: View {
                     }
                     
                 }
+                .navigationTitle("Playlist")
             }
-            .navigationTitle("Playlist")
             .background(Color("backgroundColor"))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

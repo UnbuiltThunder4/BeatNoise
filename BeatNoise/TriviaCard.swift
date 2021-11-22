@@ -24,7 +24,7 @@ struct TriviaCard: View {
             }
             Image(systemName: "chevron.down")
                 .font(.title)
-                .padding(.top, 32)
+                .padding(.top)
                 .frame(width: 20, height: 20, alignment: .trailing)
                 .rotationEffect(!isSelected ? .zero : .degrees(180))
         }

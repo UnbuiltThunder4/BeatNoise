@@ -185,10 +185,10 @@ struct PlayerView: View {
         let asset = AVAsset(url: self.player.url!)
         
         for i in asset.commonMetadata {
-            if i.commonKey?.rawValue == "artwork" {
-                let data = i.value as! Data
-                self.data = data
-            }
+//            if i.commonKey?.rawValue == "artwork" {
+//                let data = i.value as! Data
+//                self.data = data
+//            }
             if  i.commonKey?.rawValue == "title" {
                 let title = i.value as! String
                 self.title = title
@@ -214,6 +214,8 @@ struct PlayerView: View {
         self.title = ""
         self.player.prepareToPlay()
         self.getData()
+        self.currtime = "0:00"
+        self.lenght = self.getCurrenttime(value: self.player.duration)
         self.playing = true
         self.finish = false
         self.width = 0
