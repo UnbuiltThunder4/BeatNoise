@@ -25,29 +25,29 @@ struct PlaylistView: View {
                     VStack{
                         List {
                             NavigationLink(destination: PlayerView(current: 0)) {
-                                Text ("White Noise Track 1")
+                                Text ("Nature Sound")
                                 
                             }
                             NavigationLink(destination: PlayerView(current: 1)) {
                                 
-                                Text ("White Noise Track 2")
+                                Text ("Waterfall Sound")
                             }
-                            NavigationLink(destination: Text("")) {
+                            NavigationLink(destination: PlayerView(current: 2)) {
                                 
-                                Text ("Ocean Waves")
+                                Text ("River Water Sound")
                             }
-                            NavigationLink(destination: Text("")) {
+                            NavigationLink(destination: PlayerView(current: 3)) {
                                 
-                                Text ("Rain Track 1")
+                                Text ("Birds Chirping Sound")
                             }
-                            NavigationLink(destination: Text("")) {
+                            NavigationLink(destination: PlayerView(current: 4)) {
                                 
-                                Text ("Rain Track 2")
+                                Text ("Dark Lamp Sound")
                             }
                             
-                            NavigationLink(destination: Text("")) {
+                            NavigationLink(destination: PlayerView(current: 5)) {
                                 
-                                Text ("Birds Chirping")
+                                Text ("Waves Crashing Sound")
                             }
                             
                         }.frame(minHeight: minRowHeight * 16).background(Color("backgroundColor")).navigationTitle("Playlist")

@@ -20,7 +20,7 @@ struct PlayerView: View {
     @State var player: AVAudioPlayer!
     @State var playing = false
     @State var width: CGFloat = 0.0
-    @State var songs = ["Sound", "Sound1"]
+    @State var songs = ["Sound", "Sound1", "Sound2", "Sound3", "Sound4", "Sound5"]
     @State var finish = false
     @State var del = AVdelegate()
     @State var soundsamples = [Float](repeating: .zero, count: 10)
@@ -300,11 +300,11 @@ struct PlayerView: View {
 
 
 
-//struct PlayerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayerView()
-//
-//    }
-//}
-//
-//
+struct PlayerView_Previews: PreviewProvider {
+    static var previews: some View {
+        PlayerView()
+
+    }
+}
+
+
