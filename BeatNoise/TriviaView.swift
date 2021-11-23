@@ -10,15 +10,20 @@ import SwiftUI
 struct TriviaView: View {
     let titles: [String] = [
         "What is noise pollution?",
-        "At which point noise pollutione becomes hurtful?",
-        "Noise pollution and wildlife",
-        "Who is affected the most by noise pollution?",
+        "What health issues can arise due to noise pollution?",
+        "Is the wildlife affected by noise pollution?",
+        "How to prevent hear loss?",
+        "How much dangerous is noise pollution?",
+        "Who is more affected by noise pollution?"
+        
     ]
     let texts: [String] = [
         "Noise pollution is generally defined as regular exposure to elevated sound levels that may lead to adverse effects in humans or other living organisms. According to the World Health Organization,sound levels less than 70 dB aren’t damaging to living organisms, regardless of how long or consistent the exposure is. The average noise level of 98 dB exceeds the WHO value of 50 dB allowed for residential areas.",
-        "Sounds that reach 85 decibels or higher can harm a person’s ears",
-        "Noise pollution also impacts the health and well-being of wildlife. Animals use sound for a variety of reasons, including to navigate, find food, attract mates, and avoid predators. Noise pollution makes it difficult for them to accomplish these tasks, which affects their ability survive. Increasing noise is not only affecting animals on land, it is also a growing problem for those that live in the ocean. Whales and dolphins are particularly impacted by noise pollution. These marine mammals rely on echolocation to communicate, navigate, feed, and find mates, and excess noise interferes with their ability to effectively echolocate. Some of the loudest underwater noise comes from naval sonar devices. Sonar sounds can be as loud as 235 decibels and travel hundreds of miles under water, interfering with whales’ ability to use echolocation and it can cause mass strandings of whales on beaches and alter the feeding behavior of endangered blue whales (Balaenoptera musculus).",
-        "Who is affected the most by noise pollution?",
+        "Notable health issues that can be caused by noise pollution include stress, weakened mental acuity, elevated blood pressure and heart rates. These issues could even lead to more serious problems. In fact, noise pollution has been linked to other dire health complications such as dementia, stroke, and heart attacks.",
+        "Animals use sound for many reasons, including to navigate, feed and attract mates. Noise makes it difficult for them to accomplish these tasks, even for the ones that don't live on land. Whales and dolphins are particularly impacted by noise since they rely on echolocation to live and excess noise interferes with this ability. Some of the loudest underwater noise comes from naval sonar devices, that can reach 235 dB and travel hundreds of miles.",
+        "World Health Organization says that half of all cases of hearing loss can be prevented through public health measures, including reducing exposure to loud sounds by raising awareness about the risks; developing and enforcing relevant legislation; and encouraging individuals to use personal protective devices such as earplugs and noise-cancelling earphones and headphones, such as Airpods.",
+        "Atmospheric pollution is not the only type of contamination that is harming living beings on the planet. According to the World Health Organization, it is one of the most dangerous environmental threats to health. And according to the European Environment Agency, noise is responsible for 16,600 premature deaths and more than 72,000 hospitalisations every year in Europe alone.",
+        "Exposure to environmental noise does not affect everyone equally. Socially deprived groups, as well as groups with increased susceptibility to noise (people affected by ADHD, OCD and autism), may suffer more pronounced health-related impacts of noise."
     ]
     
     var body: some View {
