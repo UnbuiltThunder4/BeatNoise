@@ -11,7 +11,7 @@ import AVFoundation
 class MicrophoneMonitor: ObservableObject {
     
   
-    private var audioRecorder: AVAudioRecorder
+    public var audioRecorder: AVAudioRecorder
     private var timer: Timer?
     
     private var currentSample: Int
@@ -50,7 +50,6 @@ class MicrophoneMonitor: ObservableObject {
             audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
             
-            startMonitoring()
         } catch {
             fatalError(error.localizedDescription)
         }

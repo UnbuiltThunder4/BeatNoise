@@ -11,19 +11,21 @@ import AVKit
 
 struct PlayerView: View {
     
-    //@EnvironmentObject var cur : SettingCurrent
     @State var current = 0
     @State var data: Data = .init(count: 0)
     @State var title = ""
     @State var currtime = ""
     @State var lenght = ""
+    @State var isrepeating: Bool = true
     @State var player: AVAudioPlayer!
     @State var playing = false
     @State var width: CGFloat = 0.0
     @State var songs = ["Sound", "Sound1"]
     @State var finish = false
     @State var del = AVdelegate()
-    @State var timer = Timer.publish(every: 1, on: .current, in: .default).autoconnect()
+    @State var soundsamples = [Float](repeating: .zero, count: 10)
+    @State var currentsample = 0
+    @State var timer = Timer.publish(every: 0.5, on: .current, in: .default).autoconnect()
     @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: numberOfSamples)
 
     
@@ -62,15 +64,16 @@ struct PlayerView: View {
                 Spacer()
             }
             .padding(.bottom, 40)
-            
+             
             HStack(spacing: 4) {
-                     ForEach(mic.soundSamples, id: \.self) { level in
-                         BarView(value: self.normalizeSoundLevel(level: level))
+                     ForEach(soundsamples, id: \.self) { (_) in
+                         BarView(value: normalizeSoundLevel(level: startAnimationWave()))
+                             .animation(.linear, value: currentsample)
+
                      }
             }.frame(maxWidth: 350, maxHeight: 100).padding(.top, 40)
                 .padding()
             
-            //Text(self.title).font(.title).padding(.top)
             ZStack(alignment: .leading) {
                 
                 Capsule().fill(Color.white.opacity(0.08)).frame(width: UIScreen.main.bounds.width - 30 ,height: 8)
@@ -126,6 +129,7 @@ struct PlayerView: View {
         .navigationBarTitle(self.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
+        
             let url = Bundle.main.path(forResource: self.songs[self.current], ofType: "mp3")
             self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: url!))
             self.player.delegate = self.del
@@ -136,31 +140,38 @@ struct PlayerView: View {
             play_pause()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
                 
-                if self.player.isPlaying{
-                    
+                if self.player.isPlaying {
                     let screen = UIScreen.main.bounds.width - 30
-                    
                     let value = self.player.currentTime / self.player.duration
-                    
                     self.width = screen * CGFloat(value)
                 }
+                
             }
             NotificationCenter.default.addObserver(forName: NSNotification.Name("Finish"), object: nil, queue: .main) { (_) in
                 
                 self.finish = true
+                if !self.player.isPlaying {
+                    self.player.stop()
+                    gonext()
+                }
             }
+        }
+        .onDisappear() {
+            self.player.stop()
         }
         .onReceive(timer) {
             (_) in
             self.updateTime()
         }
+        
     }
     
     
 
     struct BarView: View {
         var value: CGFloat
-        let numberOfSamples: Int = 10
+        let numberOfsamples: Int = 10
+        
 
         var body: some View {
             ZStack {
@@ -169,7 +180,8 @@ struct PlayerView: View {
                     .fill(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),
                                          startPoint: .top,
                                          endPoint: .bottom))
-                    .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 15) / CGFloat(numberOfSamples), height: value - (value / 3) )
+                    .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfsamples) * 15) / CGFloat(numberOfsamples), height: value - (value / 1.07) )
+                
                   
             }
         }
@@ -183,12 +195,7 @@ struct PlayerView: View {
     
     func getData() {
         let asset = AVAsset(url: self.player.url!)
-        
         for i in asset.commonMetadata {
-//            if i.commonKey?.rawValue == "artwork" {
-//                let data = i.value as! Data
-//                self.data = data
-//            }
             if  i.commonKey?.rawValue == "title" {
                 let title = i.value as! String
                 self.title = title
@@ -198,7 +205,7 @@ struct PlayerView: View {
     
     func getCurrenttime (value: TimeInterval)-> String {
         let duration: String
-        duration = "\(Int(value / 60)):\(Int(value.truncatingRemainder(dividingBy: 60)) < 9 ? "0" : "")\(Int(value.truncatingRemainder(dividingBy: 60)))"
+        duration = "\(Int(value / 60)):\(Int(value.truncatingRemainder(dividingBy: 60)) < 10 ? "0" : "")\(Int(value.truncatingRemainder(dividingBy: 60)))"
         return duration
     }
     
@@ -207,6 +214,7 @@ struct PlayerView: View {
     }
     
     func ChangeSongs() {
+        self.player.stop()
         let url = Bundle.main.path(forResource: self.songs[self.current], ofType: "mp3")
         self.player = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: url!))
         self.player.delegate = self.del
@@ -233,12 +241,12 @@ struct PlayerView: View {
         if self.player.isPlaying {
             self.player.pause()
             self.playing = false
-            mic.stopMonitoring()
+            
         }
         else {
             self.player.play()
             self.playing = true
-            mic.startMonitoring()
+          
         }
     }
     
@@ -252,13 +260,32 @@ struct PlayerView: View {
             self.ChangeSongs()
         }
     }
-}
-
-
-struct PlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerView()
-           
+    
+    
+    
+    func startAnimationWave()->Float {
+        
+        let wave = [50, 100, 150, 200, 250, 200, 150, 100, 50, 100]
+        let maxsamples = 10
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: isrepeating) {_ in
+            if  self.playing {
+            soundsamples[currentsample] = Float(wave[currentsample])
+            currentsample = (currentsample + 1) % maxsamples
+            }
+            else { self.isrepeating = false}
+        }
+        return Float(soundsamples[currentsample])
     }
 }
+    
 
+
+
+//struct PlayerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlayerView()
+//
+//    }
+//}
+//
+//

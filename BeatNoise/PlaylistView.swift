@@ -46,7 +46,6 @@ struct PlaylistView: View {
                 }
                 
             }.background(Color("backgroundColor"))
-             .frame(maxWidth: .infinity, maxHeight: .infinity)
              .navigationTitle("Playlist")
             
         }

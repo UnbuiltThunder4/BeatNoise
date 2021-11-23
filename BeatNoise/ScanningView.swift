@@ -87,6 +87,7 @@ struct ScanningView: View {
                         .offset(x: -80, y: 10)
                         .onAppear {
                             micResult.startMonitoring()
+                            mic.startMonitoring()
                         }
                     Text("Wait \(timeRemaining) sec\nI'm scanning...")
                         .foregroundColor(Color.black)
