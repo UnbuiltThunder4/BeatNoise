@@ -40,7 +40,7 @@ struct ScanningView: View {
            
         return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
     }
-    
+
     var body: some View {
         NavigationView{
             VStack {
@@ -137,6 +137,7 @@ struct ScanningView: View {
                 micResult.stopMonitoring()
                 mic.stopMonitoring()
             }
+          
         }
         
     }

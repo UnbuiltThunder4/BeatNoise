@@ -12,25 +12,52 @@ import Combine
 
 
 struct ContentView: View {
+    
     @State var isActive:Bool = false
+    @State private var home = UUID()
+    @State private var playlist = UUID()
+    @State private var trivia = UUID()
+    @State private var tabSelection = 1
+    @State private var tappedTwice = false
+       
+    var handler: Binding<Int> { Binding(
+            get: { self.tabSelection },
+            set: {
+                    if $0 == self.tabSelection {
+                            tappedTwice = true
+                    }
+                    self.tabSelection = $0
+            }
+    )}
+    
     init() {
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
     }
     var body: some View {
-        TabView{
+        TabView(selection: handler){
             if self.isActive {
-            HomeView()
+                    HomeView().id(home)
+                    .onChange(of: tappedTwice, perform: { tappedTwice in
+                        guard tappedTwice else { return }
+                        home = UUID()
+                        self.tappedTwice = false
+                })
                 .tabItem {
                     Label("Scan", systemImage: "dot.radiowaves.left.and.right")
-                    }
-            PlaylistView()
+                }.tag(1)
+                    PlaylistView()
                 .tabItem {
                     Label("Playlist", systemImage: "music.note")
-                }
-                TriviaView()
+                }.tag(2)
+                    TriviaView().id(trivia)
+                    .onChange(of: tappedTwice, perform: { tappedTwice in
+                        guard tappedTwice else { return }
+                        trivia = UUID()
+                        self.tappedTwice = false
+                })
                     .tabItem {
                         Label("Trivia", systemImage: "book")
-                    }
+                    }.tag(3)
             } else {
                 SplashScreen()
             }

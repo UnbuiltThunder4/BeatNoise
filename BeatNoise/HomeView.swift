@@ -11,6 +11,7 @@ struct HomeView: View {
         init() {
             UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         }
+
     var body: some View {
         NavigationView{
             VStack{
