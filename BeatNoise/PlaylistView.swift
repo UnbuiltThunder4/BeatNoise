@@ -45,8 +45,8 @@ struct PlaylistView: View {
                     
                 }
                 
-            }.background(Color("backgroundColor"))
-             .navigationTitle("Playlist")
+                .background(Color("backgroundColor"))
+            }             .navigationTitle("Playlist")
             
         }
     }

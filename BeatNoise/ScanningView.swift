@@ -127,6 +127,7 @@ struct ScanningView: View {
                                 }
                                 micResult.stopMonitoring()
                                 mic.stopMonitoring()
+                                
                             }
                         }
             }
