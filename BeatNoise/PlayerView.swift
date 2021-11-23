@@ -29,40 +29,51 @@ struct PlayerView: View {
     @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: numberOfSamples)
 
     
-    
+    @State var blinking: Bool = false
+    @State var eyeFade = false
+    @State var height1 = false
+    @State var height2 = false
+    @State var height3 = false
+    @State var yoff = false
     
     
     var body: some View {
         VStack (spacing: 20){
             HStack(spacing: 10){
-                Spacer()
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 20, height: 20)
-                    .offset(x: 0, y: -10)
-                    .background(Ellipse()
-                        .fill(Color.black)
-                        .frame(width: 50, height: 65))
-                        .padding(.bottom, 20)
-                    .background(Ellipse()
-                        .fill(Color.white.opacity(0.9))
-                        .frame(width: 100, height: 120))
-                        .padding(.trailing, 30)
-                Spacer()
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 20, height: 20)
-                    .offset(x: 0, y: -10)
-                    .background(Ellipse()
-                        .fill(Color.black)
-                        .frame(width: 50, height: 65))
-                        .padding(.bottom, 20)
-                    .background( Ellipse()
-                        .fill(Color.white.opacity(0.9))
-                        .frame(width: 100, height: 120))
-                        .padding(.leading, 30)
-                Spacer()
-            }
+                                Spacer()
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: 20).frame(height: height1 ? 13 : 20 )
+                                    .offset(x: 0)
+                                    .offset(y: yoff ? 10 : 10)
+                                    .background(Ellipse()
+                                    .offset(x: 0)
+                                    .offset(y: yoff ? 10 : 10)
+                                    .fill(Color.black)
+                                    .frame(width: 60).frame(height: height2 ? 30 : 65))
+                                    .padding(.bottom, 20)
+                                    .background(Ellipse()
+                                    .fill(Color.white.opacity(0.9))
+                                    .frame(width: 100).frame(height: height3 ? 60 : 120))
+                                    .padding(.trailing, 30)
+                                Spacer()
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: 20).frame(height: height1 ? 13 : 20 )
+                                    .offset(x: 0)
+                                    .offset(y: yoff ? 10 : 10)
+                                    .background(Ellipse()
+                                    .offset(x: 0)
+                                    .offset(y: yoff ? 10 : 10)
+                                    .fill(Color.black)
+                                    .frame(width: 60).frame(height: height2 ? 30 : 65))
+                                    .padding(.bottom, 20)
+                                    .background(Ellipse()
+                                    .fill(Color.white.opacity(0.9))
+                                    .frame(width: 100).frame(height: height3 ? 60 : 120))
+                                    .padding(.leading, 30)
+                                Spacer()
+                            }
             .padding(.bottom, 40)
              
             HStack(spacing: 4) {
@@ -153,6 +164,14 @@ struct PlayerView: View {
                 if !self.player.isPlaying {
                     self.player.stop()
                     gonext()
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                withAnimation(.linear(duration: 0.5)){
+                    yoff.toggle()
+                    height1.toggle()
+                    height2.toggle()
+                    height3.toggle()
                 }
             }
         }

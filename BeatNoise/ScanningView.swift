@@ -126,7 +126,7 @@ struct ScanningView: View {
                                     }
                                 }
                                 micResult.stopMonitoring()
-                                mic.stopMonitoring()
+//                                mic.stopMonitoring()
                                 
                             }
                         }
@@ -137,6 +137,7 @@ struct ScanningView: View {
             .onDisappear{
                 micResult.stopMonitoring()
                 mic.stopMonitoring()
+                
             }
           
         }

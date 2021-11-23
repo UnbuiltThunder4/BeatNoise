@@ -55,7 +55,7 @@ struct ContentView: View {
                         trivia = UUID()
                         self.tappedTwice = false
                 })
-                    .tabItem {
+                .tabItem {
                         Label("Trivia", systemImage: "book")
                     }.tag(3)
             } else {
