@@ -19,24 +19,16 @@ class MicrophoneMonitor: ObservableObject {
     
 
     @Published public var soundSamples: [Float]
-  
+    @Published public var ispermission: Bool
+    @Published public var audioSession: AVAudioSession
+
     
     init(numberOfSamples: Int) {
         self.numberOfSamples = numberOfSamples // In production check this is > 0.
         self.soundSamples = [Float](repeating: .zero, count: numberOfSamples)
         self.currentSample = 0
-        
-  
-        let audioSession = AVAudioSession.sharedInstance()
-        if audioSession.recordPermission != .granted {
-            audioSession.requestRecordPermission { (isGranted) in
-                if !isGranted {
-                    fatalError("You must allow audio recording for this demo to work")
-                }
-            }
-        }
-        
-   
+        self.ispermission = true
+        self.audioSession = AVAudioSession.sharedInstance()
         let url = URL(fileURLWithPath: "/dev/null", isDirectory: true)
         let recorderSettings: [String:Any] = [
             AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless),
@@ -45,7 +37,7 @@ class MicrophoneMonitor: ObservableObject {
             AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue
         ]
         
-  
+        
         do {
             audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
@@ -55,7 +47,18 @@ class MicrophoneMonitor: ObservableObject {
         }
     }
     
-  
+    public func setPermission(audioSession: AVAudioSession) {
+        if audioSession.recordPermission != .granted {
+            audioSession.requestRecordPermission { (isGranted) in
+                if !isGranted {
+                    self.ispermission = false
+                }
+            }
+            
+        
+        }
+    }
+    
     public func startMonitoring() {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
@@ -86,19 +89,13 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
     
     private let numberOfData = 40 //Should be timeRemaining (found in ContentView) * 4
     @Published public var soundData: [Float]
+    @Published public var ispermission: Bool
+    @Published public var audioSession: AVAudioSession
     
     init() {
         self.soundData = [Float](repeating: .zero, count: numberOfData)
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        if audioSession.recordPermission != .granted {
-            audioSession.requestRecordPermission { (isGranted) in
-                if !isGranted {
-                    fatalError("You must allow audio recording for this demo to work")
-                }
-            }
-        }
-        
+        self.ispermission = true
+        self.audioSession = AVAudioSession.sharedInstance()
         let url = URL(fileURLWithPath: "/dev/null", isDirectory: true)
         let recorderSettings: [String:Any] = [
             AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless),
@@ -115,6 +112,19 @@ class MicrophoneInput: ObservableObject { //Eugenio's code
             fatalError(error.localizedDescription)
         }
     }
+    
+    public func setPermission(audioSession: AVAudioSession) {
+        if audioSession.recordPermission != .granted {
+            audioSession.requestRecordPermission { (isGranted) in
+                if !isGranted {
+                    self.ispermission = false
+                }
+            }
+            
+        
+        }
+    }
+        
     
     public func startMonitoring() {
             var times = 0
