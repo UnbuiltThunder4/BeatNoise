@@ -79,7 +79,7 @@ struct PlayerView: View {
             HStack(spacing: 4) {
                      ForEach(soundsamples, id: \.self) { (_) in
                          BarView(value: normalizeSoundLevel(level: startAnimationWave()))
-                             .animation(.linear, value: currentsample)
+                             .animation(.linear, value: soundsamples[currentsample])
 
                      }
             }.frame(maxWidth: 350, maxHeight: 100).padding(.top, 40)
