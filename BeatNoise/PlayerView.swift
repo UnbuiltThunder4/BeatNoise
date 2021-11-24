@@ -166,7 +166,7 @@ struct PlayerView: View {
                     gonext()
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation(.linear(duration: 0.5)){
                     yoff.toggle()
                     height1.toggle()

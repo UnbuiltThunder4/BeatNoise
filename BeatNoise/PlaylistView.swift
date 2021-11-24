@@ -50,12 +50,9 @@ struct PlaylistView: View {
                                 Text ("Birds Chirping")
                             }
                             
-                        }.frame(minHeight: minRowHeight * 16).background(Color("backgroundColor")).navigationTitle("Playlist")
+                        }.frame(minHeight: minRowHeight * 14).background(Color("backgroundColor")).navigationTitle("Playlist")
                     }.background(Color("backgroundColor"))
-                    
                 }.background(Color("backgroundColor"))
-              
-            
         }
     }
 }

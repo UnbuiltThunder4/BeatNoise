@@ -11,7 +11,10 @@ struct HomeView: View {
         init() {
             UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         }
+    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: 10)
+    @ObservedObject private var micInput = MicrophoneInput()
 
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -21,8 +24,8 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                         .background(Circle()
-                            .stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),startPoint: .top,endPoint: .bottom), lineWidth: 12)
-                            .foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
+                        .stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),startPoint: .top,endPoint: .bottom), lineWidth: 12)
+                        .foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
                         .padding(.bottom, 80)
                 }
                
@@ -31,7 +34,13 @@ struct HomeView: View {
         .background(Color("backgroundColor"))
         .navigationBarTitle("Scan")
         }
+        .onAppear {
+            mic.setPermission(audioSession: mic.audioSession)
+            micInput.setPermission(audioSession: micInput.audioSession)
+        }
+        .disabled((mic.ispermission == false) && (micInput.ispermission == false))
     }
+
 }
 
 struct HomeView_Previews: PreviewProvider {

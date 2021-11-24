@@ -17,6 +17,10 @@ struct ScanningView: View {
     @ObservedObject private var micResult = MicrophoneInput()
     @State var timeRemaining = 10 //Should be numberOfData (found in MicrophoneModifier) / 4
     
+    @State private var home = UUID()
+    @State private var tabSelection = 1
+    @State private var tappedTwice = false
+    
     @State var rand: Int = 0
     let trivia = ["Sounds that reach or surpass 85 dB can harm the ears.", //line 0
                   "Noise pollution can cause health problems even in wildlife.", //line 1
@@ -51,26 +55,26 @@ struct ScanningView: View {
                         .frame(width: 20, height: 20)
                         .offset(x: 0, y: -10)
                         .background(Ellipse()
-                            .fill(Color.black)
-                            .frame(width: 50, height: 65))
-                            .padding(.bottom, 20)
+                        .fill(Color.black)
+                        .frame(width: 50, height: 65))
+                        .padding(.bottom, 20)
                         .background(Ellipse()
-                            .fill(Color.white.opacity(0.9))
-                            .frame(width: 100, height: 120))
-                            .padding(.trailing, 30)
+                        .fill(Color.white.opacity(0.9))
+                        .frame(width: 100, height: 120))
+                        .padding(.trailing, 30)
                     Spacer()
                     Circle()
                         .fill(Color.white)
                         .frame(width: 20, height: 20)
                         .offset(x: 0, y: -10)
                         .background(Ellipse()
-                            .fill(Color.black)
-                            .frame(width: 50, height: 65))
-                            .padding(.bottom, 20)
+                        .fill(Color.black)
+                        .frame(width: 50, height: 65))
+                        .padding(.bottom, 20)
                         .background( Ellipse()
-                            .fill(Color.white.opacity(0.9))
-                            .frame(width: 100, height: 120))
-                            .padding(.leading, 30)
+                        .fill(Color.white.opacity(0.9))
+                        .frame(width: 100, height: 120))
+                        .padding(.leading, 30)
                     Spacer()
                 }.padding(.bottom, 40)
                 Spacer()
@@ -93,9 +97,9 @@ struct ScanningView: View {
                         .foregroundColor(Color.black)
                         .frame(maxWidth: 350, maxHeight: 150)
                         .background(Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 350, height: 150)
-                            .cornerRadius(30))
+                        .fill(Color.white)
+                        .frame(width: 350, height: 150)
+                        .cornerRadius(30))
                         .padding(.bottom, 50)
                         .onReceive(timer) { _ in
                             if timeRemaining > 0 {
@@ -114,9 +118,9 @@ struct ScanningView: View {
                             .foregroundColor(Color.black)
                             .frame(maxWidth: 350, maxHeight: 150)
                             .background(Rectangle()
-                                .fill(Color.white)
-                                .frame(width: 350, height: 150)
-                                .cornerRadius(30))
+                            .fill(Color.white)
+                            .frame(width: 350, height: 150)
+                            .cornerRadius(30))
                             .padding(.bottom, 50)
                             .onAppear {
                                 rand = Int.random(in:0..<triviaNumber)
@@ -134,12 +138,10 @@ struct ScanningView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color("backgroundColor"))
             .navigationBarTitleDisplayMode(.inline)
-            .onDisappear{
+            .onDisappear {
                 micResult.stopMonitoring()
                 mic.stopMonitoring()
-                
             }
-          
         }
         
     }
