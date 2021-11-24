@@ -20,7 +20,7 @@ struct PlayerView: View {
     @State var player: AVAudioPlayer!
     @State var playing = false
     @State var width: CGFloat = 0.0
-    @State var songs = ["Sound", "Sound1"]
+    @State var songs = ["Sound", "Sound1", "Sound2", "Sound3", "Sound4", "Sound5"]
     @State var finish = false
     @State var del = AVdelegate()
     @State var soundsamples = [Float](repeating: .zero, count: 10)
@@ -45,12 +45,12 @@ struct PlayerView: View {
                                     .fill(Color.white)
                                     .frame(width: 20).frame(height: height1 ? 13 : 20 )
                                     .offset(x: 0)
-                                    .offset(y: yoff ? 10 : 10)
+                                    .offset(y: yoff ? 5 : -8)
                                     .background(Ellipse()
                                     .offset(x: 0)
                                     .offset(y: yoff ? 10 : 10)
                                     .fill(Color.black)
-                                    .frame(width: 60).frame(height: height2 ? 30 : 65))
+                                    .frame(width: 50).frame(height: height2 ? 30 : 65))
                                     .padding(.bottom, 20)
                                     .background(Ellipse()
                                     .fill(Color.white.opacity(0.9))
@@ -61,12 +61,12 @@ struct PlayerView: View {
                                     .fill(Color.white)
                                     .frame(width: 20).frame(height: height1 ? 13 : 20 )
                                     .offset(x: 0)
-                                    .offset(y: yoff ? 10 : 10)
+                                    .offset(y: yoff ? 5 : -8)
                                     .background(Ellipse()
                                     .offset(x: 0)
                                     .offset(y: yoff ? 10 : 10)
                                     .fill(Color.black)
-                                    .frame(width: 60).frame(height: height2 ? 30 : 65))
+                                    .frame(width: 50).frame(height: height2 ? 30 : 65))
                                     .padding(.bottom, 20)
                                     .background(Ellipse()
                                     .fill(Color.white.opacity(0.9))
@@ -79,7 +79,7 @@ struct PlayerView: View {
             HStack(spacing: 4) {
                      ForEach(soundsamples, id: \.self) { (_) in
                          BarView(value: normalizeSoundLevel(level: startAnimationWave()))
-                             .animation(.linear, value: currentsample)
+                             .animation(.linear, value: soundsamples[currentsample])
 
                      }
             }.frame(maxWidth: 350, maxHeight: 100).padding(.top, 40)
@@ -300,11 +300,11 @@ struct PlayerView: View {
 
 
 
-//struct PlayerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayerView()
-//
-//    }
-//}
-//
-//
+struct PlayerView_Previews: PreviewProvider {
+    static var previews: some View {
+        PlayerView()
+
+    }
+}
+
+

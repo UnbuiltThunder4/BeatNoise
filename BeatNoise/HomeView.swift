@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-        init() {
-            UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        }
-    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: 10)
-    @ObservedObject private var micInput = MicrophoneInput()
-
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    }
     
     var body: some View {
         NavigationView{
@@ -24,23 +21,24 @@ struct HomeView: View {
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                         .background(Circle()
-                        .stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),startPoint: .top,endPoint: .bottom), lineWidth: 12)
-                        .foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
+                                        .stroke(LinearGradient(gradient: Gradient(colors: [.blue, .purple]),startPoint: .top,endPoint: .bottom), lineWidth: 12)
+                                        .foregroundColor(Color("backgroundColor")).frame(width: 200, height: 200).opacity(0.7))
                         .padding(.bottom, 80)
                 }
-               
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("backgroundColor"))
+            .navigationBarTitle("Scan")
+            .toolbar() {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: CreditsView()) {
+                        Text("Credits")
+                    }
+                }
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("backgroundColor"))
-        .navigationBarTitle("Scan")
-        }
-        .onAppear {
-            mic.setPermission(audioSession: mic.audioSession)
-            micInput.setPermission(audioSession: micInput.audioSession)
-        }
-        .disabled((mic.ispermission == false) && (micInput.ispermission == false))
     }
-
 }
 
 struct HomeView_Previews: PreviewProvider {
